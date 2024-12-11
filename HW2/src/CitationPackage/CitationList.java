@@ -67,6 +67,14 @@ public class CitationList {
     }
 
     /**
+     * Adds a citation to the citation list
+     * @param citation
+     */
+    public void add(Citation citation) {
+        listOfCitations.add(citation);
+    }
+
+    /**
      * Uses a citation ID to display the corresponding citation
      * @param number
      */
@@ -79,7 +87,7 @@ public class CitationList {
             }
         }
         // If none is found
-        return "None found\n";
+        return "None found";
         
     }
 
@@ -112,7 +120,7 @@ public class CitationList {
             }
         }
         if (!found){
-            return "None found\n";
+            return "None found";
         } else {
             return sb.toString();
         }
@@ -222,7 +230,7 @@ public class CitationList {
     public String toString() {
         StringBuilder sb = new StringBuilder(title+" "+authority+"\n");
         for (Citation citation : listOfCitations) {
-            sb.append(citation);
+            sb.append(citation.toString(true));
             sb.append("\n");
         }
         return sb.toString();
@@ -254,7 +262,11 @@ public class CitationList {
             @Override
             public int compare(Citation c1, Citation c2) {
                 // First compare by movieName
-                return c1.getPerson().getFirstName().compareTo( c2.getPerson().getFirstName() );
+                if (c1.getPerson().getLastName().compareTo( c2.getPerson().getLastName() ) != 0){
+                    return c1.getPerson().getLastName().compareTo( c2.getPerson().getLastName() );
+                } else {
+                    return c1.getPerson().getFirstName().compareTo(c2.getPerson().getFirstName() );
+                }
                 
             }
         });

@@ -70,7 +70,7 @@ public class Citation implements Comparable<Citation>{
 
     @Override
     public int compareTo(Citation cit) {
-        return 1;
+        return this.number - cit.getNumber();
     }
     
 }
